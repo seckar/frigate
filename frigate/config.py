@@ -56,6 +56,7 @@ class MqttConfig(FrigateBaseModel):
     tls_client_cert: Optional[str] = Field(title="MQTT TLS Client Certificate")
     tls_client_key: Optional[str] = Field(title="MQTT TLS Client Key")
     tls_insecure: Optional[bool] = Field(title="MQTT TLS Insecure")
+    log: Optional[bool] = Field(title="Enable MQTT Logging")
 
     @validator("password", pre=True, always=True)
     def validate_password(cls, v, values):

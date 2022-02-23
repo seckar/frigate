@@ -112,6 +112,8 @@ def create_mqtt_client(config: FrigateConfig, camera_metrics):
         client.publish(mqtt_config.topic_prefix + "/available", "online", retain=True)
 
     client = mqtt.Client(client_id=mqtt_config.client_id)
+    if mqtt_config.log:
+        client.enable_logger(logger)
     client.on_connect = on_connect
     client.will_set(
         mqtt_config.topic_prefix + "/available", payload="offline", qos=1, retain=True
